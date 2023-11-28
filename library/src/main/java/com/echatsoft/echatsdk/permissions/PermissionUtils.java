@@ -35,7 +35,7 @@ import org.xmlpull.v1.XmlPullParserException;
  *    time   : 2018/06/15
  *    desc   : 权限相关工具类
  */
-final class PermissionUtils {
+final public class PermissionUtils {
 
     /** Handler 对象 */
     private static final Handler HANDLER = new Handler(Looper.getMainLooper());
@@ -158,7 +158,7 @@ final class PermissionUtils {
     }
 
     @Nullable
-    static AndroidManifestInfo getAndroidManifestInfo(Context context) {
+    public static AndroidManifestInfo getAndroidManifestInfo(Context context) {
         int apkPathCookie = PermissionUtils.findApkPathCookie(context, context.getApplicationInfo().sourceDir);
         // 如果 cookie 为 0，证明获取失败
         if (apkPathCookie == 0) {
