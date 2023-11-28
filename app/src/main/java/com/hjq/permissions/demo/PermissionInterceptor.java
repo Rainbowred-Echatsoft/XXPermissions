@@ -24,7 +24,7 @@ import com.echatsoft.echatsdk.permissions.OnPermissionCallback;
 import com.echatsoft.echatsdk.permissions.OnPermissionPageCallback;
 import com.echatsoft.echatsdk.permissions.Permission;
 import com.echatsoft.echatsdk.permissions.PermissionFragment;
-import com.echatsoft.echatsdk.permissions.XXPermissions;
+import com.echatsoft.echatsdk.permissions.EPermissions;
 import com.hjq.toast.Toaster;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public final class PermissionInterceptor implements IPermissionInterceptor {
     @Override
     public void launchPermissionRequest(@NonNull Activity activity, @NonNull List<String> allPermissions, @Nullable OnPermissionCallback callback) {
         mRequestFlag = true;
-        List<String> deniedPermissions = XXPermissions.getDenied(activity, allPermissions);
+        List<String> deniedPermissions = EPermissions.getDenied(activity, allPermissions);
         String message = activity.getString(R.string.common_permission_message, PermissionNameConvert.getPermissionString(activity, deniedPermissions));
 
         ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
@@ -56,10 +56,10 @@ public final class PermissionInterceptor implements IPermissionInterceptor {
 
         boolean showPopupWindow = activityOrientation == Configuration.ORIENTATION_PORTRAIT;
         for (String permission : allPermissions) {
-            if (!XXPermissions.isSpecial(permission)) {
+            if (!EPermissions.isSpecial(permission)) {
                 continue;
             }
-            if (XXPermissions.isGranted(activity, permission)) {
+            if (EPermissions.isGranted(activity, permission)) {
                 continue;
             }
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R &&
@@ -235,7 +235,7 @@ public final class PermissionInterceptor implements IPermissionInterceptor {
                 .setMessage(message)
                 .setPositiveButton(R.string.common_permission_goto_setting_page, (dialog, which) -> {
                     dialog.dismiss();
-                    XXPermissions.startPermissionActivity(activity,
+                    EPermissions.startPermissionActivity(activity,
                             deniedPermissions, new OnPermissionPageCallback() {
 
                         @Override
@@ -249,7 +249,7 @@ public final class PermissionInterceptor implements IPermissionInterceptor {
                         @Override
                         public void onDenied() {
                             showPermissionSettingDialog(activity, allPermissions,
-                                    XXPermissions.getDenied(activity, allPermissions), callback);
+                                    EPermissions.getDenied(activity, allPermissions), callback);
                         }
                     });
                 })

@@ -24,7 +24,7 @@ import android.util.Log;
 import android.view.View;
 import com.echatsoft.echatsdk.permissions.OnPermissionCallback;
 import com.echatsoft.echatsdk.permissions.Permission;
-import com.echatsoft.echatsdk.permissions.XXPermissions;
+import com.echatsoft.echatsdk.permissions.EPermissions;
 import com.hjq.toast.Toaster;
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,7 +76,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
         int viewId = view.getId();
         if (viewId == R.id.btn_main_request_single_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.CAMERA)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -93,7 +93,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_group_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.RECORD_AUDIO)
                     .permission(Permission.Group.CALENDAR)
                     .interceptor(new PermissionInterceptor())
@@ -111,7 +111,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_location_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.ACCESS_COARSE_LOCATION)
                     .permission(Permission.ACCESS_FINE_LOCATION)
                     // 如果不需要在后台使用定位功能，请不要申请此权限
@@ -131,7 +131,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_sensors_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.BODY_SENSORS)
                     .permission(Permission.BODY_SENSORS_BACKGROUND)
                     .interceptor(new PermissionInterceptor())
@@ -149,7 +149,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_activity_recognition_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.ACTIVITY_RECOGNITION)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -177,7 +177,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
                 @Override
                 public void run() {
-                    XXPermissions.with(MainActivity.this)
+                    EPermissions.with(MainActivity.this)
                             .permission(Permission.BLUETOOTH_SCAN)
                             .permission(Permission.BLUETOOTH_CONNECT)
                             .permission(Permission.BLUETOOTH_ADVERTISE)
@@ -208,7 +208,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
                 @Override
                 public void run() {
-                    XXPermissions.with(MainActivity.this)
+                    EPermissions.with(MainActivity.this)
                             .permission(Permission.NEARBY_WIFI_DEVICES)
                             .interceptor(new PermissionInterceptor())
                             .request(new OnPermissionCallback() {
@@ -237,7 +237,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
                 @Override
                 public void run() {
-                    XXPermissions.with(MainActivity.this)
+                    EPermissions.with(MainActivity.this)
                             // Permission.READ_EXTERNAL_STORAGE 和 Permission.MANAGE_EXTERNAL_STORAGE 二选一
                             // 如果 targetSdk >= 33，则添加 Permission.READ_MEDIA_IMAGES 和 Permission.MANAGE_EXTERNAL_STORAGE 二选一
                             // 如果 targetSdk < 33，则添加 Permission.READ_EXTERNAL_STORAGE 和 Permission.MANAGE_EXTERNAL_STORAGE 二选一
@@ -276,7 +276,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
                 @Override
                 public void run() {
-                    XXPermissions.with(MainActivity.this)
+                    EPermissions.with(MainActivity.this)
                             // 不适配分区存储应该这样写
                             //.permission(Permission.MANAGE_EXTERNAL_STORAGE)
                             // 适配分区存储应该这样写
@@ -311,7 +311,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
                 @Override
                 public void run() {
-                    XXPermissions.with(MainActivity.this)
+                    EPermissions.with(MainActivity.this)
                             // 适配分区存储应该这样写
                             //.permission(Permission.Group.STORAGE)
                             // 不适配分区存储应该这样写
@@ -333,7 +333,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_install_packages_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.REQUEST_INSTALL_PACKAGES)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -350,7 +350,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_system_alert_window_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.SYSTEM_ALERT_WINDOW)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -367,7 +367,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_write_settings_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.WRITE_SETTINGS)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -384,7 +384,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_notification_service_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.NOTIFICATION_SERVICE)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -411,7 +411,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
                 @Override
                 public void run() {
-                    XXPermissions.with(MainActivity.this)
+                    EPermissions.with(MainActivity.this)
                             .permission(Permission.POST_NOTIFICATIONS)
                             .interceptor(new PermissionInterceptor())
                             .request(new OnPermissionCallback() {
@@ -430,7 +430,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_bind_notification_listener_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.BIND_NOTIFICATION_LISTENER_SERVICE)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -450,7 +450,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_usage_stats_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.PACKAGE_USAGE_STATS)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -467,7 +467,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_schedule_exact_alarm_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.SCHEDULE_EXACT_ALARM)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -484,7 +484,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_access_notification_policy_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.ACCESS_NOTIFICATION_POLICY)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -501,7 +501,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_ignore_battery_optimizations_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -518,7 +518,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_picture_in_picture_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.PICTURE_IN_PICTURE)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -535,7 +535,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_bind_vpn_service_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.BIND_VPN_SERVICE)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -552,7 +552,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_request_get_installed_apps_permission) {
 
-            XXPermissions.with(this)
+            EPermissions.with(this)
                     .permission(Permission.GET_INSTALLED_APPS)
                     .interceptor(new PermissionInterceptor())
                     .request(new OnPermissionCallback() {
@@ -570,14 +570,14 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         } else if (viewId == R.id.btn_main_start_permission_activity) {
 
-            XXPermissions.startPermissionActivity(this);
+            EPermissions.startPermissionActivity(this);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode != XXPermissions.REQUEST_CODE) {
+        if (requestCode != EPermissions.REQUEST_CODE) {
             return;
         }
         toast(getString(R.string.demo_return_activity_result_hint));

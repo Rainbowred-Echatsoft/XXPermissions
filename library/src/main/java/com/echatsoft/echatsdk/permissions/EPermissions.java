@@ -16,7 +16,7 @@ import java.util.List;
  *    desc   : Android 危险权限请求类
  */
 @SuppressWarnings({"unused", "deprecation"})
-public final class XXPermissions {
+public final class EPermissions {
 
     /** 权限设置页跳转请求码 */
     public static final int REQUEST_CODE = 1024 + 1;
@@ -32,15 +32,15 @@ public final class XXPermissions {
      *
      * @param context          当前 Activity，可以传入栈顶的 Activity
      */
-    public static XXPermissions with(@NonNull Context context) {
-        return new XXPermissions(context);
+    public static EPermissions with(@NonNull Context context) {
+        return new EPermissions(context);
     }
 
-    public static XXPermissions with(@NonNull Fragment fragment) {
+    public static EPermissions with(@NonNull Fragment fragment) {
         return with(fragment.getActivity());
     }
 
-    public static XXPermissions with(@NonNull android.support.v4.app.Fragment fragment) {
+    public static EPermissions with(@NonNull android.support.v4.app.Fragment fragment) {
         return with(fragment.getActivity());
     }
 
@@ -87,14 +87,14 @@ public final class XXPermissions {
     /**
      * 私有化构造函数
      */
-    private XXPermissions(@Nullable Context context) {
+    private EPermissions(@Nullable Context context) {
         mContext = context;
     }
 
     /**
      * 添加权限组
      */
-    public XXPermissions permission(@PermissionLimit @Nullable String permission) {
+    public EPermissions permission(@PermissionLimit @Nullable String permission) {
         if (permission == null) {
             return this;
         }
@@ -105,15 +105,15 @@ public final class XXPermissions {
         return this;
     }
 
-    public XXPermissions permission(@Nullable String... permissions) {
+    public EPermissions permission(@Nullable String... permissions) {
         return permission(PermissionUtils.asArrayList(permissions));
     }
 
-    public XXPermissions permission(@Nullable String[]... permissions) {
+    public EPermissions permission(@Nullable String[]... permissions) {
         return permission(PermissionUtils.asArrayLists(permissions));
     }
 
-    public XXPermissions permission(@Nullable List<String> permissions) {
+    public EPermissions permission(@Nullable List<String> permissions) {
         if (permissions == null || permissions.isEmpty()) {
             return this;
         }
@@ -130,7 +130,7 @@ public final class XXPermissions {
     /**
      * 设置权限请求拦截器
      */
-    public XXPermissions interceptor(@Nullable IPermissionInterceptor interceptor) {
+    public EPermissions interceptor(@Nullable IPermissionInterceptor interceptor) {
         mInterceptor = interceptor;
         return this;
     }
@@ -138,7 +138,7 @@ public final class XXPermissions {
     /**
      * 设置不触发错误检测机制
      */
-    public XXPermissions unchecked() {
+    public EPermissions unchecked() {
         mCheckMode = false;
         return this;
     }
