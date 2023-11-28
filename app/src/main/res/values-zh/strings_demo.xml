@@ -23,6 +23,7 @@
     <string name="demo_request_wifi_permission">申请 WIFI 权限</string>
     <string name="demo_request_media_location_permission">申请读取图片位置权限</string>
     <string name="demo_request_media_read_permission">申请媒体文件读取权限</string>
+    <string name="demo_request_image_media_read_permission">申请 图片视频 读权限</string>
     <string name="demo_request_all_file_access_permission">申请所有文件管理权限</string>
     <string name="demo_request_install_unknown_apps_permission">申请安装包权限</string>
     <string name="demo_request_display_over_other_apps_permission">申请悬浮窗权限</string>

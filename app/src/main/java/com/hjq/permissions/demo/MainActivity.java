@@ -54,6 +54,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
         findViewById(R.id.btn_main_request_wifi_devices_permission).setOnClickListener(this);
         findViewById(R.id.btn_main_request_read_media_location_permission).setOnClickListener(this);
         findViewById(R.id.btn_main_request_read_media_permission).setOnClickListener(this);
+        findViewById(R.id.btn_main_request_read_image_video_permission).setOnClickListener(this);
         findViewById(R.id.btn_main_request_manage_storage_permission).setOnClickListener(this);
         findViewById(R.id.btn_main_request_install_packages_permission).setOnClickListener(this);
         findViewById(R.id.btn_main_request_system_alert_window_permission).setOnClickListener(this);
@@ -289,6 +290,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
                                 @Override
                                 public void onGranted(@NonNull List<String> permissions, boolean allGranted) {
+                                    Log.i("Result", permissions.toString());
                                     if (!allGranted) {
                                         return;
                                     }
@@ -299,7 +301,49 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                 }
             }, delayMillis);
 
-        } else if (viewId == R.id.btn_main_request_manage_storage_permission) {
+        } else if (viewId == R.id.btn_main_request_read_image_video_permission) {
+
+            long delayMillis = 0;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                delayMillis = 2000;
+                toast(getString(R.string.demo_android_13_read_media_permission_hint));
+            }
+
+            view.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    EPermissions.with(MainActivity.this)
+                            // 不适配分区存储应该这样写
+                            //.permission(Permission.MANAGE_EXTERNAL_STORAGE)
+                            // 适配分区存储应该这样写
+                            .permission(Permission.READ_MEDIA_IMAGES)
+                            .permission(Permission.READ_MEDIA_VIDEO)
+                            //.permission(Permission.READ_MEDIA_VISUAL_USER_SELECTED)
+                            .interceptor(new PermissionInterceptor())
+                            .request(new OnPermissionCallback() {
+
+                                @Override
+                                public void onGranted(@NonNull List<String> permissions, boolean allGranted) {
+                                    Log.i("Result", "granted permission -> "+permissions.toString());
+                                    if (!allGranted) {
+                                        return;
+                                    }
+                                    toast(String.format(getString(R.string.demo_obtain_permission_success_hint),
+                                            PermissionNameConvert.getPermissionString(MainActivity.this, permissions)));
+                                }
+
+                                @Override
+                                public void onDenied(@NonNull List<String> permissions, boolean doNotAskAgain) {
+                                    Log.i("Result", "denied permission -> "+permissions.toString());
+
+                                }
+
+                            });
+                }
+            }, delayMillis);
+        }
+        else if (viewId == R.id.btn_main_request_manage_storage_permission) {
 
             long delayMillis = 0;
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
