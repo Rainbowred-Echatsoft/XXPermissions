@@ -1,3 +1,16 @@
+apply{
+    //read local.properties
+    from("properties-reader.gradle")
+}
+
+ext {
+    nexus_user = project.localProperties.getProperty("nexus_user")
+    nexus_password = project.localProperties.getProperty("nexus_password")
+
+    sonatype_username = project.localProperties.getProperty("sonatype_username")
+    sonatype_password = project.localProperties.getProperty("sonatype_password")
+}
+
 buildscript {
     repositories {
         // 阿里云云效仓库：https://maven.aliyun.com/mvn/guide
