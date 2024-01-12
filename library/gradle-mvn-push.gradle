@@ -69,4 +69,7 @@ afterEvaluate {
     }
 }
 
-
+//中央仓库签名
+signing {
+    sign publishing.publications
+}
